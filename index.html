@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
 		<meta charset="UTF-8" />
@@ -93,12 +93,12 @@
 					<div class="mp-level">
 						<h2 style="text-align: center">Main Menu</h2>
 						<ul>
-							<li>
+							<li ribbon-color="red">
 								<a href="href="#">
 									<i class="fa fa-lg fa-fw fa-home"></i>Home
 								</a>
 							</li>
-							<li>
+							<li ribbon-color="blue">
 								<a href="#">
 									<i class="fa fa-lg fa-fw fa-barcode"></i>Purchase Orders
 								</a>
@@ -118,7 +118,7 @@
 									</ul>
 								</div>
 							</li>
-							<li>
+							<li ribbon-color="purple">
 								<a href="#">
 									<i class="fa fa-lg fa-fw fa-shopping-cart"></i>Sales Orders
 								</a>
@@ -168,7 +168,7 @@
 									</ul>
 								</div>
 							</li>
-							<li>
+							<li ribbon-color="green">
 								<a href="#">
 									<i class="fa fa-lg fa-fw fa-cubes"></i>Stock Management
 								</a>
@@ -197,7 +197,7 @@
 									</ul>
 								</div>
 							</li>
-							<li>
+							<li ribbon-color="orange">
 								<a href="#">
 									<i class="fa fa-lg fa-fw fa-cogs"></i>Maintenance
 								</a>
@@ -328,7 +328,7 @@
 									</ul>
 								</div>
 							</li>
-							<li>
+							<li ribbon-color="cyan">
 								<a href="#">
 									<i class="fa fa-lg fa-fw fa-bar-chart-o"></i>Enquiries
 								</a>
@@ -594,7 +594,7 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery.slimscroll.min.js"></script>
 		<script>
-			new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
+            new mlPushMenu(document.getElementById('mp-menu'), document.getElementById('trigger'), {type: 'cover'});
 			$(document).ready(function(){
 				$("#trigger").tooltip({ placement : 'bottom' });   
 			});

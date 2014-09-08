@@ -34,12 +34,12 @@ codrops-a:hover, codrops-a:focus {
 
 #mp-menu  a {
 	text-decoration: none;
-	color: #34495e;
+	color: #333;
 	outline: none;
 }
 
 #mp-menu a:hover, #mp-menu a:focus {
-	color: #000;
+	color: #fff;
 	outline: none;
 }
 

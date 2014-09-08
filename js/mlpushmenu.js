@@ -76,7 +76,8 @@
 			// space between each overlaped level
 			levelSpacing : 40,
 			// classname for the element (if any) that when clicked closes the current level
-			backClass : 'mp-back'
+			backClass : 'mp-back',
+			state : 'open',
 		},
 		_init : function() {
 			// if menu is open or not
@@ -100,7 +101,11 @@
 			classie.add( this.el, 'mp-' + this.options.type );
 			// initialize / bind the necessary events
 			this._initEvents();
-		},
+			if (this.defaults.state == 'open') {
+				this._openMenu();
+			}
+			AddHoverColors();
+			},
 		_initEvents : function() {
 			var self = this;
 
@@ -235,6 +240,30 @@
 				}
 			}
 		}
+	}
+	
+	function getElementsByAttribute(attribute, context) {
+	    var nodeList = (context || document).getElementsByTagName('*');
+	    var nodeArray = [];
+
+	    for (var i = 0, node; node = nodeList[i]; i++) {
+	        if (node.getAttribute(attribute)) nodeArray.push(node);
+	    }
+
+	    return nodeArray;
+	}
+
+	function AddHoverColors() {
+	    var lis = getElementsByAttribute('ribbon-color', document.getElementById('mp-menu'));
+	    for (var i = 0; i < lis.length; i++) {
+	        (function () {
+	            var color = lis[i].getAttribute('ribbon-color');
+	            var a = lis[i].childNodes[1];
+	            a.addEventListener('mouseover', function () { a.style.backgroundColor = color; console.log(a, 'enter'); });
+	            a.addEventListener('mouseout', function () { a.style.backgroundColor = 'transparent'; console.log(a, 'out'); });
+	            console.log(a);
+	        }());
+	    }
 	}
 
 	// add to global namespace

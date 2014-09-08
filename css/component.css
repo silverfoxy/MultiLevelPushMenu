@@ -53,7 +53,7 @@ html, body, .codrops-container, .scroller {
 	top: 0;
 	left: 0;
 	z-index: 1;
-	width: 300px;
+	width: 240px;
 	height: 100%;
 	-webkit-transform: translate3d(-100%, 0, 0);
 	-moz-transform: translate3d(-100%, 0, 0);
@@ -170,8 +170,8 @@ html, body, .codrops-container, .scroller {
 	padding: 1em;
 	color: rgba(0,0,0,0.4);
 	text-shadow: 0 0 1px rgba(0,0,0,0.1);
-	font-weight: 300;
-	font-size: 1.5em;
+	font-weight: bold;
+	font-size: 1.3em;
 }
 
 .mp-menu.mp-overlap h2::before {
@@ -207,6 +207,34 @@ html, body, .codrops-container, .scroller {
 	transform: translateX(0);
 }
 
+.mp-menu ul li {
+	border-left: 5px solid white;
+}
+
+.mp-menu ul li[ribbon-color="red"] {
+	border-color: red;
+}
+
+.mp-menu ul li[ribbon-color="orange"] {
+	border-color: orange;
+}
+
+.mp-menu ul li[ribbon-color="green"] {
+	border-color: green;
+}
+
+.mp-menu ul li[ribbon-color="blue"] {
+	border-color: blue;
+}
+
+.mp-menu ul li[ribbon-color="purple"] {
+	border-color: purple;
+}
+
+.mp-menu ul li[ribbon-color="cyan"] {
+	border-color: cyan;
+}
+
 .mp-menu ul li > a {
 	display: block;
 	padding: 0.7em 1em 0.7em 1.8em;
@@ -214,6 +242,7 @@ html, body, .codrops-container, .scroller {
 	box-shadow: inset 0 -1px rgba(0,0,0,0.2);
 	text-shadow: 0 0 1px rgba(255,255,255,0.1);
 	font-size: 1em;
+    font-weight: bold;
 	-webkit-transition: background 0.3s, box-shadow 0.3s;
 	-moz-transition: background 0.3s, box-shadow 0.3s;
 	transition: background 0.3s, box-shadow 0.3s;
@@ -233,7 +262,6 @@ html, body, .codrops-container, .scroller {
 
 .mp-menu ul li a:hover,
 .mp-level > ul > li:first-child > a:hover {
-	background: rgba(0,0,0,0.2);
 	box-shadow: inset 0 -1px rgba(0,0,0,0);
 }
 
