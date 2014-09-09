@@ -259,9 +259,11 @@
 	        (function () {
 	            var color = lis[i].getAttribute('ribbon-color');
 	            var a = lis[i].childNodes[1];
-	            a.addEventListener('mouseover', function () { a.style.backgroundColor = color; console.log(a, 'enter'); });
-	            a.addEventListener('mouseout', function () { a.style.backgroundColor = 'transparent'; console.log(a, 'out'); });
-	            console.log(a);
+	            var icon = a.childNodes[1];
+	            icon.className += ' mp-menu-i-' + color;
+	            a.addEventListener('mouseover', function () { icon.style.color = '#fff'; console.log(icon, 'enter'); });
+	            a.addEventListener('mouseout', function () { icon.style.color = '#000'; console.log(icon, 'out'); });
+	            console.log(icon);
 	        }());
 	    }
 	}
