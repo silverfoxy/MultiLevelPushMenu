@@ -32,6 +32,10 @@ codrops-a:hover, codrops-a:focus {
 	outline: none;
 }
 
+#mp-menu {
+    height: 100%;
+}
+
 #mp-menu  a {
 	text-decoration: none;
 	color: #333;

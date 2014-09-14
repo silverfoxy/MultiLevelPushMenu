@@ -22,7 +22,7 @@ html, body, .codrops-container, .scroller {
 .codrops-container {
 	position: relative;
 	overflow: hidden;
-	background: #34495ez
+	background: #fff;
 }
 
 .menu-trigger {
@@ -172,6 +172,26 @@ html, body, .codrops-container, .scroller {
 	text-shadow: 0 0 1px rgba(0,0,0,0.1);
 	font-weight: bold;
 	font-size: 1.3em;
+    box-shadow: inset 0 -1px 0 0 rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.mp-menu h2 i:nth-child(2n) {
+    visibility: hidden;
+}
+
+.mp-level-overlay > h2 i:nth-child(2n) {
+    visibility: visible;
+}
+
+.mp-level[data-level="1"] .mp-menu-overlay-icon {
+    position: absolute; 
+    right: 10px;
+}
+
+.mp-level:not([data-level="1"]) .mp-menu-overlay-icon {
+    position: absolute; 
+    right: 0px;
 }
 
 .mp-menu.mp-overlap h2::before {
@@ -210,33 +230,61 @@ html, body, .codrops-container, .scroller {
 
 .mp-menu ul li {
     box-shadow: inset 0 -1px rgba(0,0,0,0.2);
+}
+.mp-menu-item {
     border-left: 3px solid white;
 }
-
-.mp-menu ul li[ribbon-color="red"] {
-	border-color: red;
+.mp-menu-item > a > i {
+    transition:all 0.2s ease;
 }
-
-.mp-menu ul li[ribbon-color="orange"] {
-	border-color: orange;
+.mp-menu-item-hotpink {
+	border-color: hotpink;
 }
-
-.mp-menu ul li[ribbon-color="green"] {
+.mp-menu-item-hotpink > a > i {
+    background: linear-gradient(to right, hotpink 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-position:right top;
+}
+.mp-menu-item-crimson {
+	border-color: crimson;
+}
+.mp-menu-item-crimson > a > i {
+    background: linear-gradient(to right, crimson 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-position:right top;
+}
+.mp-menu-item-green {
 	border-color: green;
 }
-
-.mp-menu ul li[ribbon-color="blue"] {
+.mp-menu-item-green > a > i {
+    background: linear-gradient(to right, green 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-position:right top;
+}
+.mp-menu-item-blue {
 	border-color: blue;
 }
-
-.mp-menu ul li[ribbon-color="purple"] {
+.mp-menu-item-blue > a > i {
+    background: linear-gradient(to right, blue 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-position:right top;
+}
+.mp-menu-item-purple {
 	border-color: purple;
 }
-
-.mp-menu ul li[ribbon-color="cyan"] {
+.mp-menu-item-purple > a > i {
+    background: linear-gradient(to right, purple 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-position:right top;
+}
+.mp-menu-item-cyan {
 	border-color: cyan;
 }
-
+.mp-menu-item-cyan > a > i {
+    background: linear-gradient(to right, cyan 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-position:right top;
+}
 .mp-menu ul li > a {
 	display: block;
 	outline: none;
@@ -246,6 +294,12 @@ html, body, .codrops-container, .scroller {
 	-webkit-transition: background 0.3s, box-shadow 0.3s;
 	-moz-transition: background 0.3s, box-shadow 0.3s;
 	transition: background 0.3s, box-shadow 0.3s;
+}
+
+.mp-level[data-level="2"] ul li > a {
+    padding: 10px 0 10px 10px;
+    font-weight: 100;
+    height: 40px;
 }
 
 .mp-menu ul li a i {
@@ -283,13 +337,6 @@ html, body, .codrops-container, .scroller {
     transition:all 0.2s ease;
 }
 
-.mp-menu-i-orange {
-    background: linear-gradient(to right, orange 50%, transparent 50%);
-    background-size: 200% 100%;
-    background-position:right top;
-    transition:all 0.2s ease;
-}
-
 .mp-menu-i-cyan {
     background: linear-gradient(to right, cyan 50%, transparent 50%);
     background-size: 200% 100%;
@@ -299,7 +346,8 @@ html, body, .codrops-container, .scroller {
 
 .mp-menu ul li a:hover i {
     background-position:left top;
- }
+    color: white;
+}
 
 .mp-menu ul li::before {
 	position: absolute;
@@ -331,6 +379,7 @@ html, body, .codrops-container, .scroller {
 
 .mp-back {
 	background: rgba(0,0,0,0.1);
+    height: 40px;
 	outline: none;
 	color: #fff;
 	text-transform: uppercase;
@@ -340,7 +389,7 @@ html, body, .codrops-container, .scroller {
 	font-size: 0.8em;
 	padding: 1em;
 	position: relative;
-	box-shadow: inset 0 1px rgba(0,0,0,0.1);
+	box-shadow: inset 0 -1px rgba(0,0,0,0.2);
 	-webkit-transition: background 0.3s;
 	-moz-transition: background 0.3s;
 	transition: background 0.3s;

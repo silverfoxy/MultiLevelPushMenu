@@ -77,13 +77,16 @@
 			levelSpacing : 40,
 			// classname for the element (if any) that when clicked closes the current level
 			backClass : 'mp-back',
-			state : 'open',
+			state: 'open',
+            autohide: false,
 		},
 		_init : function() {
 			// if menu is open or not
 			this.open = false;
 			// level depth
 			this.level = 0;
+		    //1st level width
+			this.firstLevelWidth = document.getElementById("mp-menu").offsetWidth;
 			// the moving wrapper
 			this.wrapper = document.getElementById( 'mp-pusher' );
 			// the mp-level elements
@@ -123,13 +126,15 @@
 					self._resetMenu();
 				}
 				else {
-					self._openMenu();
-					// the menu should close if clicking somewhere on the body (excluding clicks on the menu)
-					document.addEventListener( self.eventtype, function( ev ) {
-						if( self.open && !hasParent( ev.target, self.el.id ) ) {
-							bodyClickFn( this );
-						}
-					} );
+				    self._openMenu();
+				    if (defaults.autohide) {
+					    // the menu should close if clicking somewhere on the body (excluding clicks on the menu)
+					    document.addEventListener( self.eventtype, function( ev ) {
+						    if( self.open && !hasParent( ev.target, self.el.id ) ) {
+							    bodyClickFn( this );
+						    }
+					    } );
+				    }
 				}
 			} );
 
@@ -184,20 +189,25 @@
 			var levelFactor = ( this.level - 1 ) * this.options.levelSpacing,
 				translateVal = this.options.type === 'overlap' ? this.el.offsetWidth + levelFactor : this.el.offsetWidth;
 			
-			this._setTransform( 'translate3d(' + translateVal + 'px,0,0)' );
+			this._setTransform('translate3d(' + translateVal + 'px,0,0)');
 
-			if( subLevel ) {
-				// reset transform for sublevel
-				this._setTransform( '', subLevel );
-				// need to reset the translate value for the level menus that have the same level depth and are not open
-				for( var i = 0, len = this.levels.length; i < len; ++i ) {
-					var levelEl = this.levels[i];
-					if( levelEl != subLevel && !classie.has( levelEl, 'mp-level-open' ) ) {
-						this._setTransform( 'translate3d(-100%,0,0) translate3d(' + -1*levelFactor + 'px,0,0)', levelEl );
-					}
-				}
+
+			if (subLevel) {
+			    // reset transform for sublevel
+			    this._setTransform('', subLevel);
+			    // need to reset the translate value for the level menus that have the same level depth and are not open
+			    for (var i = 0, len = this.levels.length; i < len; ++i) {
+			        var levelEl = this.levels[i];
+			        if (levelEl != subLevel && !classie.has(levelEl, 'mp-level-open')) {
+			            this._setTransform('translate3d(-100%,0,0) translate3d(' + -1 * levelFactor + 'px,0,0)', levelEl);
+			        }
+			    }
 			}
-			// add class mp-pushed to main wrapper if opening the first time
+
+            //resize scroller on open
+			this.wrapper.style.width = window.innerWidth - translateVal + 'px';
+
+		    // add class mp-pushed to main wrapper if opening the first time
 			if( this.level === 1 ) {
 				//classie.add( this.wrapper, 'mp-pushed' );
 				this.open = true;
@@ -208,6 +218,8 @@
 		// close the menu
 		_resetMenu : function() {
 			this._setTransform('translate3d(0,0,0)');
+		    //resize scroller on close
+			this.wrapper.style.width = window.innerWidth + 'px';
 			this.level = 0;
 			// remove class mp-pushed from main wrapper
 			//classie.remove( this.wrapper, 'mp-pushed' );
@@ -218,6 +230,8 @@
 		_closeMenu : function() {
 			var translateVal = this.options.type === 'overlap' ? this.el.offsetWidth + ( this.level - 1 ) * this.options.levelSpacing : this.el.offsetWidth;
 			this._setTransform( 'translate3d(' + translateVal + 'px,0,0)' );
+            //resize scroller on close
+			this.wrapper.style.width = window.innerWidth - translateVal + 'px';
 			this._toggleLevels();
 		},
 		// translate the el
@@ -233,10 +247,10 @@
 				var levelEl = this.levels[i];
 				if( levelEl.getAttribute( 'data-level' ) >= this.level + 1 ) {
 					classie.remove( levelEl, 'mp-level-open' );
-					classie.remove( levelEl, 'mp-level-overlay' );
+					classie.remove(levelEl, 'mp-level-overlay');
 				}
 				else if( Number( levelEl.getAttribute( 'data-level' ) ) == this.level ) {
-					classie.remove( levelEl, 'mp-level-overlay' );
+				    classie.remove(levelEl, 'mp-level-overlay');
 				}
 			}
 		}
@@ -260,10 +274,9 @@
 	            var color = lis[i].getAttribute('ribbon-color');
 	            var a = lis[i].childNodes[1];
 	            var icon = a.childNodes[1];
-	            icon.className += ' mp-menu-i-' + color;
-	            a.addEventListener('mouseover', function () { icon.style.color = '#fff'; console.log(icon, 'enter'); });
-	            a.addEventListener('mouseout', function () { icon.style.color = '#000'; console.log(icon, 'out'); });
-	            console.log(icon);
+                //Menu icons become white when hovered.
+	            a.addEventListener('mouseover', function () { icon.style.color = '#fff'; });
+	            a.addEventListener('mouseout', function () { icon.style.color = '#000'; });
 	        }());
 	    }
 	}
